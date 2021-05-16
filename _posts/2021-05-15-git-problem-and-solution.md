@@ -50,7 +50,7 @@ $ git commit -m "added new method"
 ```
 Here comes the twist in the story. Now I just realise that a colleage has just merged her changes to the remote/main and they also edited the same file `waffle.py`. Now `waffle.py` looks like:
 
-![](/images/colleague_changes_waffle.png "Colleague's changes")
+![]({{ site.baseurl }}/images/colleague_changes_waffle.png "Colleague's changes")
 
 Now I want to incorporate the new changes to my branch. What can I do? 
 
@@ -141,7 +141,7 @@ $ git push -u origin KR-my-new-feature
 What this does is creates a new remote brnach with the same name as the local one and pushes all the changes there. 
 
 The resposne of the command:
-![]({{ site.baseurl }}/images/fin..png "Fin")
+![]({{ site.baseurl }}/images/fin.png "Fin")
 
 Now I can happily create a PR and merge my new feature with the main branch. 
 
