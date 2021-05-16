@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>A common problem | cross-validate</title>
+<meta name="generator" content="Jekyll v4.1.1" />
+<meta property="og:title" content="A common problem" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A common probelm that I run into when working on active repositories." />
+<meta property="og:description" content="A common probelm that I run into when working on active repositories." />
+<link rel="canonical" href="https://krishnarekapalli.github.io/cross-validate/git/development/software%20engineering/2021/05/15/git-problem-and-solution.html" />
+<meta property="og:url" content="https://krishnarekapalli.github.io/cross-validate/git/development/software%20engineering/2021/05/15/git-problem-and-solution.html" />
+<meta property="og:site_name" content="cross-validate" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-05-15T00:00:00-05:00" />
+<script type="application/ld+json">
+{"url":"https://krishnarekapalli.github.io/cross-validate/git/development/software%20engineering/2021/05/15/git-problem-and-solution.html","@type":"BlogPosting","headline":"A common problem","dateModified":"2021-05-15T00:00:00-05:00","datePublished":"2021-05-15T00:00:00-05:00","mainEntityOfPage":{"@type":"WebPage","@id":"https://krishnarekapalli.github.io/cross-validate/git/development/software%20engineering/2021/05/15/git-problem-and-solution.html"},"description":"A common probelm that I run into when working on active repositories.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/cross-validate/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://krishnarekapalli.github.io/cross-validate/feed.xml" title="cross-validate" /><link rel="shortcut icon" type="image/x-icon" href="/cross-validate/images/favicon.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper">
+<a class="site-title" rel="author" href="/cross-validate/">cross-validate</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger">
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewbox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger">
+<a class="page-link" href="/cross-validate/about/">About Me</a><a class="page-link" href="/cross-validate/search/">Search</a><a class="page-link" href="/cross-validate/categories/">Tags</a>
+</div>
+      </nav>
+</div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">A common problem</h1>
+<p class="page-description">A common probelm that I run into when working on active repositories.</p>
+<p class="post-meta post-meta-title"><time class="dt-published" datetime="2021-05-15T00:00:00-05:00" itemprop="datePublished">
+        May 15, 2021
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i> 
+      
+        <a class="category-tags-link" href="/cross-validate/categories/#git">git</a>
+         
+      
+        <a class="category-tags-link" href="/cross-validate/categories/#development">development</a>
+         
+      
+        <a class="category-tags-link" href="/cross-validate/categories/#software%20engineering">software engineering</a>
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <ul class="section-nav">
+<li class="toc-entry toc-h5"><a href="#1-undo-last-commit">1. Undo last commit</a></li>
+<li class="toc-entry toc-h5"><a href="#2-stash-my-changes">2. Stash my changes</a></li>
+<li class="toc-entry toc-h5"><a href="#3-update-the-brnach-with-latest-changes">3. Update the brnach with latest changes</a></li>
+<li class="toc-entry toc-h5"><a href="#4-apply-my-changes-again-using-stash-pop">4. Apply my changes again using Stash pop</a></li>
+<li class="toc-entry toc-h5"><a href="#5-resolve-conflicts">5. Resolve conflicts</a></li>
+<li class="toc-entry toc-h5"><a href="#6-commit-the-overall-changes">6. Commit the overall changes</a></li>
+<li class="toc-entry toc-h5"><a href="#7-push-changes-to-remote-and-merge-my-changes">7. Push changes to remote and merge my changes</a></li>
+</ul>
+<p>Whenever I create a branch for developing a new feature, I do a <code class="language-plaintext highlighter-rouge">git fetch</code> and <code class="language-plaintext highlighter-rouge">git rebase origin/main</code> to make my local main brach upto date with the remote branch. Then I create a new branch using <code class="language-plaintext highlighter-rouge">git checkout -b &lt;NEW_BRANCH_NAME&gt;</code></p>
+
+<p>But when working on repositories with active development where multiple people simultaneosly merge their changes to main branch, it gets a bit messy as the main branch in the remote is the ahead of the local main branch and thus the current local branch I am working on is out of sync.</p>
+
+<p>To demonstrate the issue better, let us pick an example repository. I have created a new repo in my GitHub <code class="language-plaintext highlighter-rouge">upgraded-octo-waffle</code></p>
+
+<p><img src="/images/repo_on_gihub.png" alt="" title="fast.ai's logo"></p>
+
+<p>I cloned the reposiotry into my local machine using</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git clone git@github.com:KrishnaRekapalli/upgraded-octo-waffle.git
+</code></pre></div></div>
+
+<p>If the repository is cloned into the local machine sometime ago and if the local main and the remote main branches are out of sync, we can use the commands to check if the local brnach needs to be updated and take necessary action i.e. <code class="language-plaintext highlighter-rouge">rebase</code></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git fetch <span class="c"># fetches the latest changes</span>
+<span class="nv">$ </span>git status <span class="c"># shows how far beihid is the local brnach from the remote</span>
+<span class="nv">$ </span>git rebase origin/main <span class="c">#updates the local branch with all the new changes</span>
+</code></pre></div></div>
+
+<p>Now once I have all the latest changes incorporated to my local <code class="language-plaintext highlighter-rouge">main</code> branch, I set out to work on my new feature by creating a new branch.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git checkout <span class="nt">-b</span> KR-my-new-feature
+</code></pre></div></div>
+<p><img src="/images/git_new_branch.png" alt="" title="fast.ai's logo"></p>
+
+<p>Before changes:
+<img src="/images/before_changes.png" alt="" title="fast.ai's logo"></p>
+
+<p>New changes:
+<img src="/images/new_local_changes.png" alt="" title="fast.ai's logo"></p>
+
+<p>Now I commit my new changes to the local branch.</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add waffle.py
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"added new method"</span>
+</code></pre></div></div>
+<p>Here comes the twist in the story. Now I just realise that a colleage has just merged her changes to the remote/main and they also edited the same file <code class="language-plaintext highlighter-rouge">waffle.py</code>. Now <code class="language-plaintext highlighter-rouge">waffle.py</code> looks like:</p>
+
+<p><img src="/images/colleague_changes_waffle.png" alt="" title="fast.ai's logo"></p>
+
+<p>Now I want to incorporate the new changes to my branch. What can I do?</p>
+
+<p>I first try:</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git fetch
+<span class="nv">$ </span>git rebase origin/main
+</code></pre></div></div>
+
+<p>The response is:
+<img src="/images/failed_rebase.png" alt="" title="fast.ai's logo"></p>
+
+<p>The rebase operation fails (<img class="emoji" title=":roll_eyes:" alt=":roll_eyes:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f644.png" height="20" width="20">) because there are changes to the same file and same locations and Git is not able to figure out a clean way to update <code class="language-plaintext highlighter-rouge">waffle.py</code> with my colleage’s changes on my feature branch.</p>
+
+<p>Then I abort the rebase operation by doing</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git rebase <span class="nt">--abort</span>
+</code></pre></div></div>
+<p>One solution to this problem is:</p>
+<ol>
+  <li>Undo the last commit</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">stash</code> option to save my changes</li>
+  <li>Update the branch with my colleages changes by using <code class="language-plaintext highlighter-rouge">rebase</code>
+</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">stash pop</code> to apply my changes on the top of the updated brnach</li>
+  <li>Resolve conflicts</li>
+  <li>Commit the final changes agter resolving conflicts</li>
+  <li>Push my changes to the remote and merge</li>
+</ol>
+
+<p>We will go over this proces ste-by-step now</p>
+
+<h5 id="1-undo-last-commit">
+<a class="anchor" href="#1-undo-last-commit" aria-hidden="true"><span class="octicon octicon-link"></span></a>1. Undo last commit</h5>
+<p>To undo the last commit to my branch, I do</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git reset <span class="nt">--soft</span> HEAD~1
+</code></pre></div></div>
+<p>The number <code class="language-plaintext highlighter-rouge">1</code> indicates that we want to go back one commit and by using the flag, <code class="language-plaintext highlighter-rouge">soft</code> we are asking Git to not discard the changes we made.</p>
+
+<h5 id="2-stash-my-changes">
+<a class="anchor" href="#2-stash-my-changes" aria-hidden="true"><span class="octicon octicon-link"></span></a>2. Stash my changes</h5>
+<p>Now I stash my changes by doing</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git stash
+</code></pre></div></div>
+<p>This step keeps my changes safe and now I can use rebase to update my branch.</p>
+
+<h5 id="3-update-the-brnach-with-latest-changes">
+<a class="anchor" href="#3-update-the-brnach-with-latest-changes" aria-hidden="true"><span class="octicon octicon-link"></span></a>3. Update the brnach with latest changes</h5>
+<p>For this I do</p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git rebase origin/main
+</code></pre></div></div>
+<p>Reabse now works without any complaints <img class="emoji" title=":smiley:" alt=":smiley:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f603.png" height="20" width="20"></p>
+
+<p><img src="/images/successful_rebase_after_reset.png" alt="" title="fast.ai's logo"></p>
+
+<h5 id="4-apply-my-changes-again-using-stash-pop">
+<a class="anchor" href="#4-apply-my-changes-again-using-stash-pop" aria-hidden="true"><span class="octicon octicon-link"></span></a>4. Apply my changes again using Stash pop</h5>
+
+<p>Now it is time to apply my changes on to the feature brnach I am working on. First, I do</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git stash pop
+</code></pre></div></div>
+
+<p>Now <code class="language-plaintext highlighter-rouge">waffle.py</code> will look like:
+<img src="/images/after_stash_pop.png" alt="" title="fast.ai's logo"></p>
+
+<p>So Git is expecting us to resolve the conflicts manually as the changes happened at the same place. Although these are different methods, Git is not so smart to figure that out. So it is our job to resolve the conflicts i.e. keep the changes we want and discard the changes we don’t.</p>
+
+<h5 id="5-resolve-conflicts">
+<a class="anchor" href="#5-resolve-conflicts" aria-hidden="true"><span class="octicon octicon-link"></span></a>5. Resolve conflicts</h5>
+<p>As I want to keep both the methods, I just remove the ««« and ======= and »»»&gt; symbols and now commit all the changes to the current branch</p>
+
+<h5 id="6-commit-the-overall-changes">
+<a class="anchor" href="#6-commit-the-overall-changes" aria-hidden="true"><span class="octicon octicon-link"></span></a>6. Commit the overall changes</h5>
+<p>Now as all the issues are resolved I simply do</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git add waffle.py
+<span class="nv">$ </span>git commit <span class="nt">-m</span> <span class="s2">"That was close! All good now :sweat_smile:"</span>
+</code></pre></div></div>
+
+<h5 id="7-push-changes-to-remote-and-merge-my-changes">
+<a class="anchor" href="#7-push-changes-to-remote-and-merge-my-changes" aria-hidden="true"><span class="octicon octicon-link"></span></a>7. Push changes to remote and merge my changes</h5>
+
+<p>Now we need to push the local brnach to remote so that it can be merged with the <code class="language-plaintext highlighter-rouge">main</code> branch. For this I do</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>git push <span class="nt">-u</span> origin KR-my-new-feature
+</code></pre></div></div>
+
+<p>What this does is creates a new remote brnach with the same name as the local one and pushes all the changes there.</p>
+
+<p>The resposne of the command:
+<img src="/images/fin..png" alt="" title="fast.ai's logo"></p>
+
+<p>Now I can happily create a PR and merge my new feature with the main branch.</p>
+
+<p>I cant resist but end this post with one of xkcd comics on Git. This captures my emotions about git for most part. While it is a game changing tool that spearheaded collaborative development, it can take a bit of time to get a hang of the capabilities and for most part, one may end up using only 10-15% of the core features of Git and there is a lot I don’t understand and keep learning as I run into problems <img class="emoji" title=":smiley:" alt=":smiley:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f603.png" height="20" width="20"></p>
+
+<p><img src="https://imgs.xkcd.com/comics/git.png" alt="" title="fast.ai's logo"></p>
+
+  </div>
+<a class="u-url" href="/cross-validate/git/development/software%20engineering/2021/05/15/git-problem-and-solution.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/cross-validate/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/cross-validate/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/cross-validate/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>A blog about my experiences in data science and software engineering</p>
+      </div>
+    </div>
+
+    <div class="social-links">
+<ul class="social-media-list">
+<li><a rel="me" href="https://github.com/KrishnaRekapalli" title="KrishnaRekapalli"><svg class="svg-icon grey"><use xlink:href="/cross-validate/assets/minima-social-icons.svg#github"></use></svg></a></li>
+<li><a rel="me" href="https://twitter.com/tweeshna" title="tweeshna"><svg class="svg-icon grey"><use xlink:href="/cross-validate/assets/minima-social-icons.svg#twitter"></use></svg></a></li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
