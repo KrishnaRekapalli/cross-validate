@@ -6,9 +6,9 @@ categories: [git, development, software engineering]
 title: Git's magic to resolve common issues with active repositories
 ---
 
-Whenever I create a branch for developing a new feature, I do a `git fetch` and `git rebase origin/main` to make my local main brach upto date with the remote branch. Then I create a new branch using `git checkout -b <NEW_BRANCH_NAME>`
+Whenever I start developing developing a new feature, I do a `git fetch` and `git rebase origin/main` to make my local `main`  upto date with the remote `main`. Then I create a new branch using `git checkout -b <NEW_BRANCH_NAME>`
 
-But when working on repositories with active development where multiple people simultaneosly merge their changes to main branch, it gets a bit messy as the main branch in the remote is the ahead of the local main branch and thus the current local branch I am working on is out of sync. 
+But when working on repositories with active development where multiple people simultaneosly merge their changes to the main branch, it gets a bit messy as the `main`  in the remote gets ahead of the local `main` and thus the current local branch I work on gets out of sync. 
 
 To demonstrate the issue better, let us pick an example repository. I have created a new repo in my GitHub `upgraded-octo-waffle`
 
@@ -21,7 +21,7 @@ I cloned the reposiotry into my local machine using
 $ git clone git@github.com:KrishnaRekapalli/upgraded-octo-waffle.git
 ```
 
-If the repository is cloned into the local machine sometime ago and if the local main and the remote main branches are out of sync, we can use the commands to check if the local brnach needs to be updated and take necessary action i.e. `rebase`
+If the repository is cloned into the local machine sometime ago and if the local main and the remote main branches are out of sync, we can use the following set of commands to check if the local brnach needs to be updated and take necessary action i.e. `rebase`
 
 ```shell
 $ git fetch # fetches the latest changes
@@ -29,7 +29,7 @@ $ git status # shows how far beihid is the local brnach from the remote
 $ git rebase origin/main #updates the local branch with all the new changes
 ```
 
-Now once I have all the latest changes incorporated to my local `main` branch, I set out to work on my new feature by creating a new branch.
+Once I have all the latest changes incorporated to my local `main` branch, I set out to work on my new feature by creating a new branch.
 
 ```shell
 $ git checkout -b KR-my-new-feature
@@ -48,7 +48,7 @@ Now I commit my new changes to the local branch.
 $ git add waffle.py
 $ git commit -m "added new method"
 ```
-Here comes the twist in the story. Now I just realise that a colleage has just merged her changes to the remote/main and they also edited the same file `waffle.py`. Now `waffle.py` looks like:
+Here comes the twist in the story. Now I just realise that a colleage has just merged her changes to the `remote/main` and they also edited the same file `waffle.py`. Now `waffle.py` looks like:
 
 ![]({{ site.baseurl }}/images/colleague_changes_waffle.png "Colleague's changes")
 
@@ -100,13 +100,13 @@ For this I do
 ```shell
 $ git rebase origin/main
 ```
-Reabse now works without any complaints :smiley:
+Rebase now works without any complaints :smiley:
 
 ![]({{ site.baseurl }}/images/successful_rebase_after_reset.png "Successful rebase")
 
 ##### 4. Apply my changes again using Stash pop
 
-Now it is time to apply my changes on to the feature brnach I am working on. First, I do
+Now it is time to apply my changes on to the feature branch I am working on using `stash pop`. 
 
 ```shell
 $ git stash pop
@@ -119,11 +119,11 @@ So Git is expecting us to resolve the conflicts manually as the changes happened
 
 
 ##### 5. Resolve conflicts
-As I want to keep both the methods, I just remove the <<<<<< and ======= and >>>>>>> symbols and now commit all the changes to the current branch
+As I want to keep both the methods, I just remove the `<<<<<<` and `=======` and `>>>>>>>` symbols and commit all the changes to the current branch
 
 
 ##### 6. Commit the overall changes
-Now as all the issues are resolved I simply do
+As all the issues are resolved I simply `add` and `commit` my changes.  
 
 ```shell
 $ git add waffle.py
@@ -132,7 +132,7 @@ $ git commit -m "That was close! All good now :sweat_smile:"
 
 ##### 7. Push changes to remote and merge my changes
 
-Now we need to push the local brnach to remote so that it can be merged with the `main` branch. For this I do
+Now we need to push the local brnach to remote so that it can be merged with the `main` branch. 
 
 ```shell
 $ git push -u origin KR-my-new-feature
