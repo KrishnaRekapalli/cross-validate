@@ -1,31 +1,31 @@
 ---
 toc: false
 layout: post
-description: A common probelm that I run into when working on active repositories.
+description: A common problem that I run into when working on active repositories.
 categories: [git, development, software engineering]
 title: Git's magic to resolve common issues with active repositories
 ---
 
-Whenever I start developing developing a new feature, I do a `git fetch` and `git rebase origin/main` to make my local `main`  upto date with the remote `main`. Then I create a new branch using `git checkout -b <NEW_BRANCH_NAME>`
+Whenever I start developing a new feature, I do a `git fetch` and `git rebase origin/main` to make my local `main`  upto date with the remote `main`. Then I create a new branch using `git checkout -b <NEW_BRANCH_NAME>`
 
-But when working on repositories with active development where multiple people simultaneosly merge their changes to the main branch, it gets a bit messy as the `main`  in the remote gets ahead of the local `main` and thus the current local branch I work on gets out of sync. 
+But when working on repositories with active development where multiple people simultaneously merge their changes to the main branch, it gets a bit messy as the `main`  in the remote gets ahead of the local `main` and thus the current local branch I work on gets out of sync. 
 
 To demonstrate the issue better, let us pick an example repository. I have created a new repo in my GitHub `upgraded-octo-waffle`
 
 ![]({{ site.baseurl }}/images/repo_on_gihub.png "Initial state")
 
 
-I cloned the reposiotry into my local machine using 
+I cloned the repository into my local machine using 
 
 ```shell
 $ git clone git@github.com:KrishnaRekapalli/upgraded-octo-waffle.git
 ```
 
-If the repository is cloned into the local machine sometime ago and if the local main and the remote main branches are out of sync, we can use the following set of commands to check if the local brnach needs to be updated and take necessary action i.e. `rebase`
+If the repository is cloned into the local machine sometime ago and if the local main and the remote main branches are out of sync, we can use the following set of commands to check if the local branch needs to be updated and take necessary action i.e. `rebase`
 
 ```shell
 $ git fetch # fetches the latest changes
-$ git status # shows how far beihid is the local brnach from the remote
+$ git status # shows how far behind is the local branch from the remote
 $ git rebase origin/main #updates the local branch with all the new changes
 ```
 
@@ -48,7 +48,7 @@ Now I commit my new changes to the local branch.
 $ git add waffle.py
 $ git commit -m "added new method"
 ```
-Here comes the twist in the story. Now I just realise that a colleage has just merged her changes to the `remote/main` and they also edited the same file `waffle.py`. Now `waffle.py` looks like:
+Here comes the twist in the story. Now I just realise that a colleague has just merged her changes to the `remote/main` and they also edited the same file `waffle.py`. Now `waffle.py` looks like:
 
 ![]({{ site.baseurl }}/images/colleague_changes_waffle.png "Colleague's changes")
 
@@ -63,7 +63,7 @@ $ git rebase origin/main
 The response is:
 ![]({{ site.baseurl }}/images/failed_rebase.png "Failed rebase")
 
-The rebase operation fails (:roll_eyes:) because there are changes to the same file and same locations and Git is not able to figure out a clean way to update `waffle.py` with my colleage's changes on my feature branch.
+The rebase operation fails (:roll_eyes:) because there are changes to the same file and same locations and Git is not able to figure out a clean way to update `waffle.py` with my colleague's changes on my feature branch.
 
 Then I abort the rebase operation by doing
 ```shell
@@ -72,13 +72,13 @@ $ git rebase --abort
 One solution to this problem is:
 1. Undo the last commit 
 2. Use `stash` option to save my changes
-3. Update the branch with my colleages changes by using `rebase`
-4. Use `stash pop` to apply my changes on the top of the updated brnach
+3. Update the branch with my colleagues changes by using `rebase`
+4. Use `stash pop` to apply my changes on the top of the updated branch
 5. Resolve conflicts
-6. Commit the final changes agter resolving conflicts
+6. Commit the final changes after resolving conflicts
 7. Push my changes to the remote and merge
 
-We will go over this proces ste-by-step now
+We will go over this process step-by-step now
 
 ##### 1. Undo last commit
 To undo the last commit to my branch, I do
@@ -95,7 +95,7 @@ $ git stash
 This step keeps my changes safe and now I can use rebase to update my branch. 
 
 
-##### 3. Update the brnach with latest changes
+##### 3. Update the branch with latest changes
 For this I do
 ```shell
 $ git rebase origin/main
@@ -106,7 +106,7 @@ Rebase now works without any complaints :smiley:
 
 ##### 4. Apply my changes again using Stash pop
 
-Now it is time to apply my changes on to the feature branch I am working on using `stash pop`. 
+Now it is time to apply my changes to the feature branch I am working on using `stash pop`. 
 
 ```shell
 $ git stash pop
@@ -132,19 +132,21 @@ $ git commit -m "That was close! All good now :sweat_smile:"
 
 ##### 7. Push changes to remote and merge my changes
 
-Now we need to push the local brnach to remote so that it can be merged with the `main` branch. 
+Now we need to push the local branch to remote so that it can be merged with the `main` branch. 
 
 ```shell
 $ git push -u origin KR-my-new-feature
 ```
 
-What this does is creates a new remote brnach with the same name as the local one and pushes all the changes there. 
+What this does is creates a new remote branch with the same name as the local one and pushes all the changes there. 
 
-The resposne of the command:
+The response of the command:
 ![]({{ site.baseurl }}/images/fin.png "Fin")
 
 Now I can happily create a PR and merge my new feature with the main branch. 
 
-I cant resist but end this post with one of xkcd comics on Git. This captures my emotions about git for most part. While it is a game changing tool that spearheaded collaborative development, it can take a bit of time to get a hang of the capabilities and for most part, one may end up using only 10-15% of the core features of Git and there is a lot I don't understand and keep learning as I run into problems :smiley: 
+I can't resist but end this post with one of xkcd comics on Git. This captures my emotions about git for most part. While it is a game changing tool that spearheaded collaborative development, it can take a bit of time to get a hang of the capabilities and for most part, one may end up using only 10-15% of the core features of Git and there is a lot I don't understand and keep learning as I run into problems :smiley: 
 
 ![](https://imgs.xkcd.com/comics/git.png "XKCD on Git")
+
+
