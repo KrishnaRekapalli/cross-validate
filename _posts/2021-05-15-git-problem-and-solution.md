@@ -1,9 +1,9 @@
 ---
-toc: true
+toc: false
 layout: post
 description: A common probelm that I run into when working on active repositories.
 categories: [git, development, software engineering]
-title: A common problem 
+title: Git's magic to resolve common issues with active repositories
 ---
 
 Whenever I create a branch for developing a new feature, I do a `git fetch` and `git rebase origin/main` to make my local main brach upto date with the remote branch. Then I create a new branch using `git checkout -b <NEW_BRANCH_NAME>`
@@ -12,7 +12,7 @@ But when working on repositories with active development where multiple people s
 
 To demonstrate the issue better, let us pick an example repository. I have created a new repo in my GitHub `upgraded-octo-waffle`
 
-![](/images/repo_on_gihub.png "fast.ai's logo")
+![]({{ site.baseurl }}/images/repo_on_gihub.png "Initial state")
 
 
 I cloned the reposiotry into my local machine using 
@@ -34,13 +34,13 @@ Now once I have all the latest changes incorporated to my local `main` branch, I
 ```shell
 $ git checkout -b KR-my-new-feature
 ```
-![](/images/git_new_branch.png "fast.ai's logo")
+![]({{ site.baseurl }}/images/git_new_branch.png "Creating a new branch")
 
 Before changes:
-![](/images/before_changes.png "fast.ai's logo")
+![]({{ site.baseurl }}/images/before_changes.png "Before changes")
 
 New changes:
-![](/images/new_local_changes.png "fast.ai's logo")
+![]({{ site.baseurl }}/images/new_local_changes.png "After changes!")
 
 Now I commit my new changes to the local branch.
 
@@ -50,7 +50,7 @@ $ git commit -m "added new method"
 ```
 Here comes the twist in the story. Now I just realise that a colleage has just merged her changes to the remote/main and they also edited the same file `waffle.py`. Now `waffle.py` looks like:
 
-![](/images/colleague_changes_waffle.png "fast.ai's logo")
+![](/images/colleague_changes_waffle.png "Colleague's changes")
 
 Now I want to incorporate the new changes to my branch. What can I do? 
 
@@ -61,7 +61,7 @@ $ git rebase origin/main
 ```
 
 The response is:
-![](/images/failed_rebase.png "fast.ai's logo")
+![]({{ site.baseurl }}/images/failed_rebase.png "Failed rebase")
 
 The rebase operation fails (:roll_eyes:) because there are changes to the same file and same locations and Git is not able to figure out a clean way to update `waffle.py` with my colleage's changes on my feature branch.
 
@@ -102,7 +102,7 @@ $ git rebase origin/main
 ```
 Reabse now works without any complaints :smiley:
 
-![](/images/successful_rebase_after_reset.png "fast.ai's logo")
+![]({{ site.baseurl }}/images/successful_rebase_after_reset.png "Successful rebase")
 
 ##### 4. Apply my changes again using Stash pop
 
@@ -113,7 +113,7 @@ $ git stash pop
 ```
 
 Now `waffle.py` will look like:
-![](/images/after_stash_pop.png "fast.ai's logo")
+![]({{ site.baseurl }}/images/after_stash_pop.png "After Stash pop")
 
 So Git is expecting us to resolve the conflicts manually as the changes happened at the same place. Although these are different methods, Git is not so smart to figure that out. So it is our job to resolve the conflicts i.e. keep the changes we want and discard the changes we don't.
 
@@ -141,10 +141,10 @@ $ git push -u origin KR-my-new-feature
 What this does is creates a new remote brnach with the same name as the local one and pushes all the changes there. 
 
 The resposne of the command:
-![](/images/fin..png "fast.ai's logo")
+![]({{ site.baseurl }}/images/fin..png "Fin")
 
 Now I can happily create a PR and merge my new feature with the main branch. 
 
 I cant resist but end this post with one of xkcd comics on Git. This captures my emotions about git for most part. While it is a game changing tool that spearheaded collaborative development, it can take a bit of time to get a hang of the capabilities and for most part, one may end up using only 10-15% of the core features of Git and there is a lot I don't understand and keep learning as I run into problems :smiley: 
 
-![](https://imgs.xkcd.com/comics/git.png "fast.ai's logo")
+![](https://imgs.xkcd.com/comics/git.png "XKCD on Git")
