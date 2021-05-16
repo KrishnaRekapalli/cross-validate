@@ -141,7 +141,7 @@ $ git push -u origin KR-my-new-feature
 What this does is creates a new remote brnach with the same name as the local one and pushes all the changes there. 
 
 The resposne of the command:
-![]({{ site.baseurl }}/images/fin..png "Fin")
+![]({{ site.baseurl }}/images/fin.png "Fin")
 
 Now I can happily create a PR and merge my new feature with the main branch. 
 
